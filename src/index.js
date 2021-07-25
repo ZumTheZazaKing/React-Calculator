@@ -1,8 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-function App(){
+function Calculator(){
 
   return <div>
     <h1>Hello</h1>
@@ -10,6 +10,6 @@ function App(){
 
 }
 
-const el = <App />
+const el = <Calculator />
 
 ReactDOM.render(el, document.getElementById('root'));
