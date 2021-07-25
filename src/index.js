@@ -1,36 +1,41 @@
 import React from 'react';
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
+import  mexp  from 'math-expression-evaluator';
 
 
 function InputField(props){
 
-  return <input type="text" value={props.data} />
+  return <div className="valueField">
+
+    <input type="text" value={props.data} readOnly={true} />
+
+  </div>
 
 }
 
 function Button(props){
 
-  return <div>
+  return <div className="buttons">
 
-      <button onClick={}>C</button>
-      <button onClick={}>/</button>
-      <button onClick={}>*</button>
-      <button onClick={}>7</button>
-      <button onClick={}>8</button>
-      <button onClick={}>9</button>
-      <button onClick={}>-</button>
-      <button onClick={}>4</button>
-      <button onClick={}>5</button>
-      <button onClick={}>6</button>
-      <button onClick={}>+</button>
-      <button onClick={}>3</button>
-      <button onClick={}>2</button>
-      <button onClick={}>1</button>
-      <button onClick={}>0</button>
-      <button onClick={}>00</button>
-      <button onClick={}>.</button>
-      <button onClick={}>=</button>
+      <button className="clear" onClick={e => props.handleClick(e.target.innerHTML)}>C</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>/</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>*</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>7</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>8</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>9</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>-</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>4</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>5</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>6</button>
+      <button className="plus" onClick={e => props.handleClick(e.target.innerHTML)}>+</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>3</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>2</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>1</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>0</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>00</button>
+      <button onClick={e => props.handleClick(e.target.innerHTML)}>.</button>
+      <button className="equal" onClick={e => props.handleClick(e.target.innerHTML)}>=</button>
 
       
 
@@ -46,14 +51,20 @@ function Calculator(){
 
   function changeValue(addition){
 
-    //setValue([...value, addition])
+    if(addition === "C"){
+      return setValue("")
+    }
 
-    console.log(addition)
+    if(addition === "="){
+      return setValue(mexp.eval(value))
+    }
+
+    setValue(value + addition)
 
   }
 
 
-  return <div>
+  return <div className="container">
 
     <InputField data={value} />
     <Button handleClick={changeValue} />
